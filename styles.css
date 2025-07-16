@@ -1,28 +1,224 @@
+/* styles.css */
+:root {
+  /* 기본 색상, 그림자 등 */
+  --calc-bg: #ffffff;
+  --display-outer-bg: #ddd;
+  --display-inner-bg: #aaa;
+  --display-color: #000000;
+  --btn-bg: #f9f9f9;
+  --btn-color: #333333;
+  --btn-shadow: rgba(0, 0, 0, 0.1);
+  --logo-size: 40px;
+  --calc-base-width: 350;
+  --calc-base-height: 628;
+  --calc-padding: 24px;
+  --led-size: 14px;
+  --label-size: 8px;
+  --led-dot-size: 4px; /* LED 바로 아래 작은 점 크기 */
+  --btn-size: 40px;
+  --btn-gap: 20px;
+
+  /* 디스플레이 프레임 크기 */
+  --frame-width: 275px; /* 옅은 회색 박스 너비 */
+  --frame-height: 70px; /* 옅은 회색 박스 높이 */
+  --frame-padding: 12px; /* 옅은 회색 박스 내부 여백 */
+
+  /* 외부 음영 박스 두께 */
+  --outer-offset: 5px;
+
+  /* 내부 디스플레이(스크린) 높이 */
+  --display-height: calc(var(--frame-height) - var(--frame-padding) * 2);
+
+  /* 내부 스크린 모서리 반경 */
+  --screen-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --calc-bg: #000000;
+    --display-outer-bg: #444;
+    --display-inner-bg: #222;
+    --display-color: #ffffff;
+    --btn-bg: #333333;
+    --btn-color: #ffffff;
+    --btn-shadow: rgba(0, 0, 0, 0.5);
+  }
+}
+
 body {
-  background-color: #f8f9fa;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--calc-bg);
 }
-.calculator-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.calculator {
+  background: var(--calc-bg);
+  padding: var(--calc-padding);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: 0 4px 12px var(--btn-shadow);
+  width: min(90vw, calc(var(--calc-base-width) * 1px));
+  aspect-ratio: var(--calc-base-width) / var(--calc-base-height);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
-#display {
-  font-size: 1.5rem;
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+.logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  margin-top: 24px;
+  margin-left: 16px;
+  object-fit: contain;
+}
+
+.display-container {
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 외부 음영 박스 */
+.display-outer-frame {
+  background: var(--calc-bg);
+  padding: var(--outer-offset);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.display-frame {
+  background: var(--display-outer-bg);
+  width: var(--frame-width);
+  height: var(--frame-height);
+  padding: var(--frame-padding);
+  border-radius: 4px; /* 프레임 모서리 반경 */
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.6);
+}
+
+.display-screen {
+  width: 220px;
+  height: var(--display-height);
+  background: var(--display-inner-bg);
+  color: var(--display-color);
+  font-size: 1.8rem;
   text-align: right;
-  padding: 10px;
-  background-color: #f1f3f5;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  line-height: var(--display-height);
+  padding-right: 8px;
+  border-radius: var(--screen-radius); /* 내부 스크린 모서리 반경 */
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.3);
 }
-.calc-btn {
-  font-size: 1.2rem;
-  padding: 15px;
-  height: 60px;
+
+.indicators {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-left: 5px;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  padding-left: 8px;
 }
-.result-alert {
-  margin-top: 10px;
+
+.indicator-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* LED 본체 */
+.indicator {
+  width: var(--led-size);
+  height: var(--led-size);
+  border-radius: 50%;
+}
+
+/* LED 바로 아래 작은 점 */
+.led-dot {
+  width: var(--led-dot-size);
+  height: var(--led-dot-size);
+  background: var(--display-color);
+  border-radius: 50%;
+}
+
+/* LED 밑의 채워진/비어있는 원 라벨 */
+.led-label {
+  width: var(--label-size);
+  height: var(--label-size);
+  border-radius: 50%;
+}
+
+.filled {
+  background: #333333;
+}
+.empty {
+  border: 1px solid #333333;
+  background: transparent;
+}
+
+.buttons {
+  margin-top: 24px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, var(--btn-size));
+  grid-auto-rows: var(--btn-size);
+  gap: var(--btn-gap); /* 행/열 간격을 모두 동일하게 적용 */
+  justify-content: center;
+  justify-items: center;
+}
+
+.btn {
+  width: var(--btn-size);
+  height: var(--btn-size);
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: none;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px var(--btn-shadow);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.btn.operator {
+  color: #d35400;
+}
+.btn.equals {
+  background: #f39c12;
+  color: #ffffff;
+}
+.btn.clear {
+  color: #c0392b;
+}
+.btn.mem {
+  color: #27ae60;
+}
+.btn.fn {
+  color: #8e44ad;
+}
+.btn.op-sign {
+  color: #2980b9;
 }
