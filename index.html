@@ -12,7 +12,6 @@
       <div class="logo-container">
         <img src="braun-logo.svg" alt="Braun Logo" class="logo" />
       </div>
-
       <!-- 디스플레이 영역 (외부 음영 박스 → 옅은 회색 프레임 → 어두운 스크린) -->
       <div class="display-container">
         <div class="display-outer-frame">
@@ -22,7 +21,7 @@
         </div>
       </div>
 
-      <div class="indicators">
+      <div class="indicators" id="themeIndicator">
         <div class="indicator-group">
           <!-- 1) LED 본체 (초록) -->
           <div class="indicator led-green"></div>
@@ -41,36 +40,39 @@
       <!-- 버튼 그리드 -->
       <div class="buttons">
         <!-- 1행 -->
-        <button class="btn mem">M+</button>
-        <button class="btn mem">M-</button>
-        <button class="btn mem">MR</button>
-        <button class="btn mem">MC</button>
-        <button class="btn op-sign">±</button>
+        <button class="btn mem" data-action="memory-add">M+</button>
+        <button class="btn mem" data-action="memory-sub">M-</button>
+        <button class="btn mem" data-action="memory-recall">MR</button>
+        <button class="btn mem" data-action="memory-clear">MC</button>
+        <button class="btn op-sign" data-action="plus-minus">±</button>
         <!-- 2행 -->
-        <button class="btn fn">Δ%</button>
-        <button class="btn num">7</button>
-        <button class="btn num">8</button>
-        <button class="btn num">9</button>
-        <button class="btn operator">÷</button>
+        <button class="btn fn" data-action="delta">Δ%</button>
+        <button class="btn num" data-number="7">7</button>
+        <button class="btn num" data-number="8">8</button>
+        <button class="btn num" data-number="9">9</button>
+        <button class="btn operator" data-operator="÷">÷</button>
         <!-- 3행 -->
-        <button class="btn fn">√</button>
-        <button class="btn num">4</button>
-        <button class="btn num">5</button>
-        <button class="btn num">6</button>
-        <button class="btn operator">×</button>
+        <button class="btn fn" data-action="sqrt">√</button>
+        <button class="btn num" data-number="4">4</button>
+        <button class="btn num" data-number="5">5</button>
+        <button class="btn num" data-number="6">6</button>
+        <button class="btn operator" data-operator="×">×</button>
         <!-- 4행 -->
-        <button class="btn fn">%</button>
-        <button class="btn num">1</button>
-        <button class="btn num">2</button>
-        <button class="btn num">3</button>
-        <button class="btn operator">−</button>
+        <button class="btn fn" data-action="percent">%</button>
+        <button class="btn num" data-number="1">1</button>
+        <button class="btn num" data-number="2">2</button>
+        <button class="btn num" data-number="3">3</button>
+        <button class="btn operator" data-operator="−">−</button>
         <!-- 5행 -->
-        <button class="btn clear">CE/C</button>
-        <button class="btn num">0</button>
-        <button class="btn num">.</button>
-        <button class="btn equals">=</button>
-        <button class="btn operator">+</button>
+        <button class="btn clear" data-action="clear">CE/C</button>
+        <button class="btn num" data-number="0">0</button>
+        <button class="btn num decimal" data-number=".">
+          <span class="decimal-dot"></span>
+        </button>
+        <button class="btn equals" data-action="equals">=</button>
+        <button class="btn operator" data-operator="+">+</button>
       </div>
     </div>
+    <script src="calculator.js"></script>
   </body>
 </html>
